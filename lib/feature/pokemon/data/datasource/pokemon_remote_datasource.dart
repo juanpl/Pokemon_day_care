@@ -16,7 +16,7 @@ class PokemonRemoteDatasource {
     } catch (e, s) {
       throw CustomException(
         error: e,
-        errorCode: '01-1D',
+        errorCode: '01-1DS',
         stackTrace: s,
         errorMessage: 'Tuvimos problemas obteniendo los pokemons',
       );

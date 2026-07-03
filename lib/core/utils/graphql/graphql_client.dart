@@ -1,28 +1,30 @@
-import 'package:dio/dio.dart';
+import 'package:graphql/client.dart';
 
 class GraphqlClient {
-  final Dio _dio;
+  final GraphQLClient _client;
 
   GraphqlClient(String baseUrl)
-    : _dio = Dio(
-        BaseOptions(baseUrl: baseUrl, contentType: 'application/json'),
+    : _client = GraphQLClient(
+        link: HttpLink(baseUrl),
+        cache: GraphQLCache(),
       );
 
   Future<Map<String, dynamic>> query({
     required String query,
     Map<String, dynamic>? variables,
   }) async {
-    final response = await _dio.post(
-      '',
-      data: {'query': query, 'variables': ?variables},
+    final result = await _client.query(
+      QueryOptions(
+        document: gql(query),
+        variables: variables ?? const {},
+        fetchPolicy: FetchPolicy.networkOnly,
+      ),
     );
 
-    final body = response.data as Map<String, dynamic>;
-
-    if (body['errors'] != null) {
-      throw Exception(body['errors']);
+    if (result.hasException) {
+      throw Exception(result.exception);
     }
 
-    return body['data'] as Map<String, dynamic>;
+    return result.data as Map<String, dynamic>;
   }
 }
