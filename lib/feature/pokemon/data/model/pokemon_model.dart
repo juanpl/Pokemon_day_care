@@ -12,13 +12,14 @@ class PokemonModel {
   });
 
   factory PokemonModel.fromJson(Map<String, dynamic> json) {
+    final species = json['gen3_species'];
     return PokemonModel(
-      name: json['name'],
-      id: json['id'],
-      types: (json['pokemon_v2_pokemons']['pokemon_v2_pokemontypes'] as List)
-          .map((sprite) => sprite['pokemon_v2_type']['name'])
+      name: species['name'],
+      id: species['id'],
+      types: (species['pokemon_v2_pokemons']['pokemon_v2_pokemontypes'] as List)
+          .map((sprite) => sprite['pokemon_v2_type']['name'] as String)
           .toList(),
-      sprite: sprite,
+      sprite: species['pokemon_v2_pokemonsprites']['pokemon_v2_pokemonsprites'],
     );
   }
 }
