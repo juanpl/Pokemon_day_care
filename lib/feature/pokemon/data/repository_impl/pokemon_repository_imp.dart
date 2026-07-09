@@ -15,7 +15,7 @@ class PokemonRepositoryImp implements PokemonRepository {
   Future<List<PokemonEntity>> getPokemonList({required String generation}) async{
     try {
       final data = await _pokemonRemoteDatasource.getPokemonList(generation);
-      final List<Map<String, dynamic>>pokemonJson = data['gen3_species'];
+      final pokemonJson = (data['gen3_species'] as List).cast<Map<String, dynamic>>();
       final List<PokemonModel> pokemonModel = pokemonJson.map((json)=>PokemonModel.fromJson(json)).toList();
       final List<PokemonEntity> pokemonList = pokemonModel.map((model)=>PokemonEntity.fromModel(model)).toList();
       return pokemonList;
