@@ -10,4 +10,7 @@ class CustomException implements Exception {
     this.stackTrace,
     required this.errorCode,
   });
+
+  @override
+  String toString() => '[$errorCode] $errorMessage ($error)';
 }

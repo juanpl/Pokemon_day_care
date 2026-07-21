@@ -1,5 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pokemon_day_care/core/utils/graphql/graphql_client.dart';
+import 'package:pokemon_day_care/core/utils/sembast/sembast_client.dart';
+import 'package:pokemon_day_care/feature/pokemon/data/datasource/pokemon_local_datasource.dart';
 import 'package:pokemon_day_care/feature/pokemon/data/datasource/pokemon_remote_datasource.dart';
 import 'package:pokemon_day_care/feature/pokemon/data/repository_impl/pokemon_repository_imp.dart';
 import 'package:pokemon_day_care/feature/pokemon/domain/use_cases/get_pokemon_list_use_case.dart';
@@ -13,7 +15,10 @@ void main() {
     final datasource = PokemonRemoteDatasource(
       GraphqlClient(_pokeApiGraphqlUrl),
     );
-    final repository = PokemonRepositoryImp(datasource);
+    final localDataSource = PokemonLocalDatasource(
+      SembastClient()
+    );
+    final repository = PokemonRepositoryImp(datasource, localDataSource);
     useCase = GetPokemonListUseCase(repository);
   });
 

@@ -2,6 +2,7 @@ enum PokemonGenerationsEnum {
   firstGeneration,
   secondGeneration,
   thirdGeneration,
+  honorRoll,
 }
 
 extension PokemonGenerationsEnumExtension on PokemonGenerationsEnum {
@@ -13,6 +14,21 @@ extension PokemonGenerationsEnumExtension on PokemonGenerationsEnum {
         return 'generation-ii';
       case PokemonGenerationsEnum.thirdGeneration:
         return 'generation-iii';
+      case PokemonGenerationsEnum.honorRoll:
+        return 'honor-roll';
+    }
+  }
+
+  String get label {
+    switch (this) {
+      case PokemonGenerationsEnum.firstGeneration:
+        return 'Primera generación';
+      case PokemonGenerationsEnum.secondGeneration:
+        return 'Segunda generación';
+      case PokemonGenerationsEnum.thirdGeneration:
+        return 'Tercera generación';
+      case PokemonGenerationsEnum.honorRoll:
+        return 'Cuadro de honor';
     }
   }
 }

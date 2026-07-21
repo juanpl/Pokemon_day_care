@@ -20,7 +20,7 @@ void main() {
         final species = result['gen3_species'] as List<dynamic>;
         final bulbasaurJson = species.first as Map<String, dynamic>;
 
-        final model = PokemonModel.fromJson(bulbasaurJson);
+        final model = PokemonModel.fromRemoteDataSourceJson(bulbasaurJson);
 
         expect(model.name, 'bulbasaur');
         expect(model.id, 1);
