@@ -1,11 +1,13 @@
 import 'package:graphql/client.dart';
 
+const _pokeApiGraphqlUrl = 'https://beta.pokeapi.co/graphql/v1beta';
 class GraphqlClient {
+  
   final GraphQLClient _client;
 
-  GraphqlClient(String baseUrl)
+  GraphqlClient()
     : _client = GraphQLClient(
-        link: HttpLink(baseUrl),
+        link: HttpLink(_pokeApiGraphqlUrl),
         cache: GraphQLCache(),
       );
 

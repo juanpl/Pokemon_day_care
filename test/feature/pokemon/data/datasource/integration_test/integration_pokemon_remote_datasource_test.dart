@@ -2,13 +2,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:pokemon_day_care/core/utils/graphql/graphql_client.dart';
 import 'package:pokemon_day_care/feature/pokemon/data/datasource/pokemon_remote_datasource.dart';
 
-const String _pokeApiGraphqlUrl = 'https://beta.pokeapi.co/graphql/v1beta';
-
 void main() {
   late PokemonRemoteDatasource datasource;
 
   setUp(() {
-    datasource = PokemonRemoteDatasource(GraphqlClient(_pokeApiGraphqlUrl));
+    datasource = PokemonRemoteDatasource(GraphqlClient());
   });
 
   group('PokemonRemoteDatasource integration', () {

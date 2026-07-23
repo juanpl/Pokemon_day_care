@@ -6,14 +6,12 @@ import 'package:pokemon_day_care/feature/pokemon/data/datasource/pokemon_remote_
 import 'package:pokemon_day_care/feature/pokemon/data/repository_impl/pokemon_repository_imp.dart';
 import 'package:pokemon_day_care/feature/pokemon/domain/use_cases/get_pokemon_list_use_case.dart';
 
-const String _pokeApiGraphqlUrl = 'https://beta.pokeapi.co/graphql/v1beta';
-
 void main() {
   late GetPokemonListUseCase useCase;
 
   setUp(() {
     final datasource = PokemonRemoteDatasource(
-      GraphqlClient(_pokeApiGraphqlUrl),
+      GraphqlClient(),
     );
     final localDataSource = PokemonLocalDatasource(
       SembastClient()
